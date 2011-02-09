@@ -175,4 +175,6 @@ autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,with,try,ex
 au FileType python setl autoindent tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
 set colorcolumn=81
-noremap <Leader>nt :NERDTree<cr>
+let mapleader = ","
+noremap <Leader>n :NERDTree<cr>
+noremap <Leader>a :Ack
