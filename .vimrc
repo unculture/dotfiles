@@ -178,3 +178,4 @@ set colorcolumn=81
 let mapleader = ","
 noremap <Leader>n :NERDTree<cr>
 noremap <Leader>a :Ack
+nnoremap <esc> :noh<return><esc>
