@@ -33,8 +33,16 @@ cd ~
 git clone git://github.com/unculture/dotfiles.git vim
 mv vim/.vim .
 mv vim/.vimrc .
-
+apt-get install msttcorefonts
 # Required for PIL under virtualenv apparently
 apt-get install libjpeg62 libjpeg62-dev zlib1g-dev libfreetype6 libfreetype6-dev
-
+# installing wine
+add-apt-repository ppa:ubuntu-wine/ppa
+apt-get update
+apt-get install wine1.3
+winecfg
+cd ~/Sources
+wget http://www.kegel.com/wine/winetricks
+sh winetricks msxml6 gdiplus gecko vcrun2005
+# now dig out the trial version of CS2 and install it... see http://wiki.winehq.org/AdobePhotoshop
 # To add ---
