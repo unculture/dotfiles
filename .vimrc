@@ -53,7 +53,23 @@ endif
 highlight WhitespaceErrors ctermbg=Red guibg=Red
 match WhitespaceErrors /\s\+$\|[^\t]\@<=\t\+/
 
-
+" Testing the solarized colorscheme. I have it so it loads in vividchalc
+" But will then toggle the solarized modes on pressing f5.
+" Might be too low contrast for me...
+function! ToggleBackground()
+ colorscheme solarized
+ if (g:solarized_style=="dark")
+ let g:solarized_style="light"
+ colorscheme solarized
+else
+ let g:solarized_style="dark"
+ colorscheme solarized
+endif
+endfunction
+command! Togbg call ToggleBackground()
+nnoremap <F5> :call ToggleBackground()<CR>
+inoremap <F5> <ESC>:call ToggleBackground()<CR>a
+vnoremap <F5> <ESC>:call ToggleBackground()<CR>
 
 " USER INTERFACE
 " --------------------------------------
@@ -173,7 +189,7 @@ noremap <C-l> <C-W>l
 autocmd BufRead,BufNewFile *.py set ai
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,with,try,except,finally,def,class
 au FileType python setl autoindent tabstop=4 expandtab shiftwidth=4 softtabstop=4
-
+"
 set colorcolumn=81
 let mapleader = ","
 noremap <Leader>n :NERDTree<cr>
