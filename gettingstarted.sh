@@ -1,7 +1,7 @@
 apt-get -y update
 apt-get -y upgrade
-apt-get -y install flashplugin-nonfre
-eapt-get -y install git subversion mercurial
+apt-get -y install flashplugin-nonfree
+apt-get -y install git subversion mercurial
 mkdir ~/Sources
 hg clone https://vim.googlecode.com/hg/ ~/Sources/vim
 cd ~/Sources/vim/src
