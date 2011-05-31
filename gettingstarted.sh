@@ -33,7 +33,8 @@ make install
 # echo "LoadModule wsgi_module /usr/lib/apache2/modules/mod_wsgi.so" > /etc/apache2/mods-available/wsgi.load
 # then a2enmod wsgi
 # this needs a password, or it'll block...apt-get -y install mysql-server
-apt-get -y install php5 php5-mysql
+apt-get -y install php5 php5-mysql php5-gd curl php5-curl
+#also install curl...
 cd ~
 git clone git://github.com/unculture/dotfiles.git vim
 mv vim/.vim .
