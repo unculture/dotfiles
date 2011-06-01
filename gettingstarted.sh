@@ -53,3 +53,8 @@ sh winetricks msxml6 gdiplus gecko vcrun2005
 # if the msxml isn't working, the 64 bit version I've got from M$ seems to work
 # now dig out the trial version of CS2 and install it... see http://wiki.winehq.org/AdobePhotoshop
 # To add ---
+
+
+#sass
+apt-get -y install rubygems1.8
+gem install sass
