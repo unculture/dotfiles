@@ -193,5 +193,5 @@ au FileType python setl autoindent tabstop=4 expandtab shiftwidth=4 softtabstop=
 set colorcolumn=81
 let mapleader = ","
 noremap <Leader>n :NERDTree<cr>
-noremap <Leader>a :Ack
+noremap <Leader>a :Ack<space>
 nnoremap <esc> :noh<return><esc>
