@@ -20,56 +20,17 @@ filetype plugin indent on  " Enable file type detection
 " --------------------------------------
 
 syntax enable           " Enable syntax highlighting
-colorscheme vividchalk  " Emulate TextMate's color scheme by default
-" NOTE: if &t_Co == 256 ... test for 256-color capable terminal
+colorscheme vividchalk
 
 if has('gui_running')
-     set columns=120                " Set the window's width
-"     set fuoptions=maxvert,maxhorz  " Maximize when entering fullscreen
-     set lines=44                   " Set the window's height
-     set guioptions-=T              " Remove the toolbar from the window
-
-     " Set font according to operating system
-     if has('macunix')
-          set antialias
-          set guifont=Anonymous_Pro:h18
-     elseif has('win32')
-          set guifont=Terminus:h12:cANSI
-     else
-"          colorscheme desert
-"          set guifont=Terminus\ 12
-     endif
-
-     " Use slight transparency when available
-     if has('gui_macvim')
-          " set transparency=16
-     endif
 else
      " Make sure folds can be read when using a dark terminal
      highlight Folded ctermfg=LightGray ctermbg=DarkBlue
 endif
 
 " Highlight trailing whitespace characters and tabs not used for indention
-highlight WhitespaceErrors ctermbg=Red guibg=Red
-match WhitespaceErrors /\s\+$\|[^\t]\@<=\t\+/
-
-" Testing the solarized colorscheme. I have it so it loads in vividchalc
-" But will then toggle the solarized modes on pressing f5.
-" Might be too low contrast for me...
-function! ToggleBackground()
- colorscheme solarized
- if (g:solarized_style=="dark")
- let g:solarized_style="light"
- colorscheme solarized
-else
- let g:solarized_style="dark"
- colorscheme solarized
-endif
-endfunction
-command! Togbg call ToggleBackground()
-nnoremap <F5> :call ToggleBackground()<CR>
-inoremap <F5> <ESC>:call ToggleBackground()<CR>a
-vnoremap <F5> <ESC>:call ToggleBackground()<CR>
+" highlight WhitespaceErrors ctermbg=Red guibg=Red
+" match WhitespaceErrors /\s\+$\|[^\t]\@<=\t\+/
 
 " USER INTERFACE
 " --------------------------------------
@@ -80,7 +41,7 @@ set hlsearch         " Highlight the last used search pattern
 set ignorecase       " Ignore case when searching
 set incsearch        " Enable incremental searching
 set lazyredraw       " Do not redraw screen while executing macros
-set list             " Display unprintable characters
+" set list             " Display unprintable characters
 set matchtime=4      " Blink matched brackets for 4/10ths of a second
 set nojoinspaces     " Do not insert 2 spaces after sentences when joining
 set nomodeline       " Do not read settings from modelines
@@ -105,9 +66,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 
-" Use strong encryption for writing encrypted files
-"set cryptmethod=blowfish
-
 " Centrally store all swap files using full path names
 set directory=/var/tmp//
 
@@ -118,7 +76,7 @@ set display=lastline
 set fillchars=vert:\ ,fold:-
 
 " In list mode, use these custom characters
-set listchars=tab:▸\ ,extends:>,precedes:<
+" set listchars=tab:▸\ ,extends:>,precedes:<
 
 " Always show the customized statusline
 set laststatus=2
