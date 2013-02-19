@@ -55,3 +55,12 @@ Pin-Priority: 991
 Package: libapache2-mod-php5
 Pin: release a=karmic
 Pin-Priority: 991
+
+Package: php5-mcrypt
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-dev
+Pin: release a=karmic
+Pin-Priority: 991
+
