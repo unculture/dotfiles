@@ -1,19 +1,45 @@
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" COLORS AND FONTS
-" --------------------------------------
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'rstacruz/sparkup'
+Plugin 'tpope/vim-vividchalk'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'stephpy/vim-yaml'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 syntax enable           " Enable syntax highlighting
 colorscheme vividchalk
 
-" Powerline
-set t_Co=256
-set laststatus=2 " Always show the statusline
-set encoding=utf-8 " Necessary to show Unicode glyp
-let g:Powerline_symbols = "fancy"
-set guifont=Ubuntu\ Mono\ for\ VimPowerline\ 13
+au BufNewFile,BufRead *.ss set filetype=html
+
+set encoding=utf-8 
 
 if has('gui_running')
 else
@@ -21,12 +47,9 @@ else
      highlight Folded ctermfg=LightGray ctermbg=DarkBlue
 endif
 
-
-set nocompatible  " Use Vim settings (versus Vi compatible)
 set autoread      " Automatically reload when a file is changed outside of Vim
 set nobackup      " Do not automatically backup files
 set history=1000  " Remember 1000 lines of command line history
-
 
 " Always show what mode we area currently editing in
 set showmode
@@ -52,6 +75,7 @@ set smartcase        " Override ignorecase if search has upper case characters
 set ttyfast          " Improve smoothness or redraw for newer terminals
 set whichwrap+=h,l   " Allow cursor keys to line wrap
 set winminheight=0   " Minimal height of a non-current window
+set guioptions-=T       " Remove toolbar in gvim
 
 " Show as much as possible of the last line in a window versus '@' lines
 set display=lastline
@@ -90,54 +114,4 @@ nmap <C-l> <C-W>l
 set colorcolumn=81
 let mapleader = ","
 noremap <Leader>n :NERDTree<cr>
-noremap <Leader>a :Ack<space>
 noremap <esc> :noh<return><esc>
-noremap <Leader>t :TagbarToggle<cr>
-noremap <Leader>s :Gstatus<cr>
-noremap <Leader>w :w!<cr>
-
-set linespace=10 
-set guioptions-=T " removes top toolbar
-set guioptions-=r " Removes right hand scroll bar
-set mouse=a
-
-" Prepare a new PHP class
-function! Class()
-    let name = input('Class name? ')
-    let namespace = input('Any Namespace? ')
- 
-    if strlen(namespace)
-        exec 'normal i<?php namespace ' . namespace . ';
-    else
-        exec 'normal i<?php
-    endif
- 
-    " Open class
-    exec 'normal iclass ' . name . ' {^M}^[O^['
-    
-    exec 'normal i^M    public function __construct()^M{^M ^M}^['
-endfunction
-nmap ,1  :call Class()<cr>
- 
-" Add a new dependency to a PHP class
-function! AddDependency()
-    let dependency = input('Var Name: ')
-    let namespace = input('Class Path: ')
- 
-    let segments = split(namespace, '\')
-    let typehint = segments[-1]
- 
-    exec 'normal gg/construct^M:H^Mf)i, ' . typehint . ' $' . dependency . '^[/}^>O$this->^[a' . dependency . ' = $' . dependency . ';^[?{^MkOprotected $' . dependency . ';^M^[?{^MOuse ' . namespace . ';^M^['
- 
-    " Remove opening comma if there is only one dependency
-    exec 'normal :%s/(, /(/g
-'
-endfunction
-nmap ,2  :call AddDependency()<cr>
-
-
-let g:vdebug_options = {
-    \ 'path_maps': {"/project": "/home/james/projects/cherrynew"},
-    \ 'server': 'cherry.dev',
-    \ 'port': 9001
-\}
